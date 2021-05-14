@@ -111,31 +111,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // loading while login in
+            if(email.equalsIgnoreCase("admin")&&password.equalsIgnoreCase("pass")){
+                startActivity(new Intent(MainActivity.this,afterLogin.class));
 
+            }else {
+                userName.setError("error");
+                pass.setError("error");
+
+            }
 
             // to check validation for sign in with valid fire base data
-            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    progressDialog.setMessage("login in process..");
-                    progressDialog.show();
-                    if (task.isSuccessful()){
-                        // finish() just lets the system know that the programmer wants the
-                        // current Activity to be finished. And hence, it calls up onDestroy() after that
-                        finish();
-
-                        // start the profile activity
-                        startActivity(new Intent(MainActivity.this,afterLogin.class));
-                    }
-
-                    else {
-                        progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this,"Invalid username/password",Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            });
         }
         catch (IllegalArgumentException e){
             e.printStackTrace();

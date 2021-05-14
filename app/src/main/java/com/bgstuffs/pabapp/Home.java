@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,7 @@ public class Home extends Fragment {
 
     //a list to store all the products
     List<serviceCenteres> serviceCenteresList;
-
+    private BillingProcessor billingProcessor;
     //the recyclerview
     RecyclerView recyclerView;
 
@@ -92,13 +96,34 @@ public class Home extends Fragment {
 
         // initialization of views in fragment
         bt_location = view.findViewById(R.id.btLocation);
+        billingProcessor = new BillingProcessor(getActivity(),"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAimYOGnBuxZXnU5GCiXsaWdSFW3ToKhiEOB25l1GvbGAVKdOksfAfkWFbi3aFz39Xpl61Ef7K/0kmUcb2yYBA4olyW8rFhlpRtIi1s4oIm1ZIaWUZ730jnejctr8XWVEFFCtnLbh9gS1wuzB4txu5xM1mjs3rQAZ1jO7NL96s1wwoFm30a9iNPxsUcEHTF/Dho+ufvXKnAGu8/SqVm3erQFzL0sTST/AY4Yw4o2ViDxqqe2l69GlJgYu9T7ccf/ZahQM25bS4v71iD5LrRMwQjDc4528UbWn6iqJCsKeS8cCICc3Oj5CLTJ/Pb12DbvfKkbdf0/LwQpn8HDguH9zhCQIDAQAB" , null, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) {
+                Toast.makeText(getActivity(),"purchased",Toast.LENGTH_LONG);
 
+            }
+
+            @Override
+            public void onPurchaseHistoryRestored() {
+
+            }
+
+            @Override
+            public void onBillingError(int errorCode, Throwable error) {
+
+            }
+
+            @Override
+            public void onBillingInitialized() {
+
+            }
+        });
         bt_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // A fragment can get the activity via the getActivity() function.
-                Intent intent = new Intent(getActivity(),myLocation.class);
-                startActivity(intent);
+
+                billingProcessor.subscribe(getActivity(),"acup");
+
             }
         });
 
