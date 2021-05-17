@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class forgetPassword extends AppCompatActivity {
 
@@ -21,7 +20,6 @@ public class forgetPassword extends AppCompatActivity {
     private Button sendEmail;
 
     // fireBase initialization
-    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,6 @@ public class forgetPassword extends AppCompatActivity {
         sendEmail = findViewById(R.id.bt_sendEmail);
 
         // for calling the instance of the Fire base auth
-        firebaseAuth = FirebaseAuth.getInstance();
 
         // when send button is clicked
         sendEmail.setOnClickListener(new View.OnClickListener() {
@@ -45,19 +42,8 @@ public class forgetPassword extends AppCompatActivity {
                 }
 
                 else {
-                    firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(forgetPassword.this,"Password reset email sent!",Toast.LENGTH_LONG).show();
+                    forget.setError("Please enter your email!");
 
-                                startActivity(new Intent(forgetPassword.this,MainActivity.class));
-                            }
-                            else {
-                                Toast.makeText(forgetPassword.this,"Email not registered!",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
                 }
 
 

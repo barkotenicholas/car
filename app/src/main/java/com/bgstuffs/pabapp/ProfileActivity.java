@@ -18,8 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class ProfileActivity extends Fragment {
 
@@ -28,7 +27,6 @@ public class ProfileActivity extends Fragment {
     TextView openWebpage;
     Integer REQUEST_CAMERA=1, SELECT_FILE=0;
 
-    FirebaseUser user;
     String uid;
 
     @Nullable
@@ -42,8 +40,7 @@ public class ProfileActivity extends Fragment {
         openWebpage.setMovementMethod(LinkMovementMethod.getInstance());
 
         // getting information of a specific user
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        uid = user.getUid();
+        uid = "asdasd";
 
         // when iv is clicked
         iv.setOnClickListener(new View.OnClickListener() {

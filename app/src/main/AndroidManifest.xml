@@ -34,9 +34,7 @@
             android:label="@string/title_activity_after_login" />
         <activity android:name=".myLocation" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA7NdUwXK5Hq2mq7teq-hF6BXO5LnZ87r0" />
+
 
         <activity android:name=".ServiceShop1" />
         <activity android:name=".ServiceShop2" />
